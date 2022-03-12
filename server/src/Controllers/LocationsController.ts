@@ -1,10 +1,10 @@
 import {Location} from "../entity/Location";
 import {validate} from "../utils/Validations";
-import {LocationRepository} from "../Repositories/LocationRepository";
-import {getCustomRepository} from "typeorm";
+import {Request, Response} from "express";
 
 
-const RegisterLocation = async (req,res)=>{
+
+const RegisterLocation = async (req : Request,res : Response)=>{
     const {name,district,sector}  = req.body;
 
     if (!validate(name) || !validate(district))
@@ -14,7 +14,6 @@ const RegisterLocation = async (req,res)=>{
             message: "name and district are required fields"
         });
     }
-
     try {
         await Location.saveLocation(name,district,sector);
         return res.status(201).json({message:"successfully saved"});
@@ -28,7 +27,7 @@ const RegisterLocation = async (req,res)=>{
     }
 }
 
-const RetrieveLocations = (req,res)=>{
+const RetrieveLocations = (req : Request,res : Response)=>{
     try {
         const locations  = Location.find();
         return res.status(200).json(locations);

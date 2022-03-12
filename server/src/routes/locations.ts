@@ -1,11 +1,11 @@
-import express, {response} from "express";
-import {RegisterLocation, RetrieveLocations} from "../Controllers/LocationsController";
+    import express, {response} from "express";
+    import {RegisterLocation, RetrieveLocations} from "../Controllers/LocationsController";
 
-const router = express.Router();
+    const router = express.Router();
 
-router.route("/")
-    .post(RegisterLocation)
-    .get(RetrieveLocations);
+    router.route("/")
+        .post(RegisterLocation)
+        .get(RetrieveLocations);
 
 
-export default router;
+    export default router;
