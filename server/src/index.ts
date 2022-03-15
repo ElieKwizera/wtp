@@ -16,8 +16,10 @@ app.use(morgan("common"));
 app.use("/api/locations", locations);
 app.use("/api/auth", account);
 
-app.listen(process.env.PORT, async () => {
-    console.log("server running on port 5000");
+const port = process.env.PORT;
+
+app.listen(port, async () => {
+    console.log(`server running on port ${port}`);    
     try {
         await createConnection();
         console.log("Connected to the database")
