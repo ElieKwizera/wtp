@@ -10,7 +10,9 @@ export class User extends BaseEntity{
     @Column()
     username: string;
 
-    @Column()
+    @Column({
+        unique: true
+    })
     email: string;
 
     @Column()
@@ -27,6 +29,11 @@ export class User extends BaseEntity{
         default: new Date()
     })
     createdAt : Date
+
+    @Column({
+        default : false
+    })
+    verified : Boolean
 
     @BeforeInsert()
     async hashPassword() {

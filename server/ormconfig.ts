@@ -1,10 +1,10 @@
-{
+module.exports = {
    "type": "postgres",
    "host": "localhost",
-   "port": 5432,
-   "username": "elz",
-   "password": "elz12345",
-   "database": "wtp",
+   "port": process.env.DB_PORT,
+   "username": process.env.DB_USER,
+   "password": process.env.DB_PASSWORD,
+   "database": process.env.DB_NAME,
    "synchronize": true,
    "logging": false,
    "entities": [

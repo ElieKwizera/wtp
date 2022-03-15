@@ -1,10 +1,11 @@
 import {Location} from "../entity/Location";
 import {validate} from "../utils/Validations";
 import {Request, Response} from "express";
+import {AppRequest} from "../Middleware/auth";
 
 
 
-const RegisterLocation = async (req : Request,res : Response)=>{
+const RegisterLocation = async (req : AppRequest,res : Response)=>{
     const {name,district,sector}  = req.body;
 
     if (!validate(name) || !validate(district))
@@ -27,7 +28,7 @@ const RegisterLocation = async (req : Request,res : Response)=>{
     }
 }
 
-const RetrieveLocations = (req : Request,res : Response)=>{
+const RetrieveLocations = (req : AppRequest,res : Response)=>{
     try {
         const locations  = Location.find();
         return res.status(200).json(locations);

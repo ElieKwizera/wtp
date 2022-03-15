@@ -1,10 +1,12 @@
 import express from "express";
-import {login, register} from "../Controllers/AccountController";
+import {getCurrentUser, login, register, verifyEmail} from "../Controllers/AccountController";
 
 const router = express.Router();
 
 
-router.post("/login", register);
-router.post("/register", login);
+router.post("/login", login);
+router.post("/register", register);
+router.post("/verify/:token", verifyEmail);
+router.get("/current-user", getCurrentUser);
 
 export default router;
