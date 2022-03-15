@@ -7,7 +7,7 @@ export  class Location extends BaseEntity
     id: number;
 
     @Column({
-            nullable: false
+        nullable: false
     })
     name: string
 
