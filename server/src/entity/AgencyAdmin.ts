@@ -1,15 +1,18 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, BeforeInsert, OneToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, BeforeInsert, OneToMany, ManyToOne} from "typeorm";
 import {Roles} from "./Roles";
 import bcrypt from 'bcrypt';
 import { Agency } from "./Agency";
 
-@Entity("users")
-export class User extends BaseEntity{
+@Entity("agencyadmin")
+export class AgencyAdmin extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     username: string;
+
+    @Column()
+    name: string;
 
     @Column({
         unique: true
@@ -26,6 +29,10 @@ export class User extends BaseEntity{
     })
     role: Roles;
 
+    @ManyToOne( () => Agency, agency => agency.agencyAdmins)
+    agency: Agency
+
+
     @Column({
         default: new Date()
     })
@@ -36,8 +43,9 @@ export class User extends BaseEntity{
     })
     verified : Boolean
 
-    @OneToMany(() => Agency, agency => agency.createdBy)
-    agencies: Agency
+
+
+ 
 
     @BeforeInsert()
     async hashPassword() {
